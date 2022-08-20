@@ -41,7 +41,7 @@ const Home: NextPage = () => {
                   name="Market"
                   type="number"
                   placeholder="55.83"
-                  className="w-28"
+                  className="max-w-[112px]"
                   value={market || ''}
                   onChange={handleMarket}
                   min={0}
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                   name="Weight"
                   type="number"
                   placeholder="31.1"
-                  className="w-32"
+                  className="max-w-[128px]"
                   value={weight || ''}
                   onChange={handleWeight}
                   min={0}
@@ -83,7 +83,7 @@ const Home: NextPage = () => {
                   name="Quality"
                   type="number"
                   placeholder="100"
-                  className="w-20"
+                  className="max-w-[80px]"
                   value={quality || ''}
                   onChange={handleQuality}
                   min={0}
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
                   name="Price"
                   type="number"
                   placeholder="180"
-                  className="w-32"
+                  className="max-w-[128px]"
                   value={price || ''}
                   onChange={handlePrice}
                   min={0}
