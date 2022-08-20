@@ -1,5 +1,5 @@
 export async function getGoldMarket() {
-  const url = 'http://localhost:3000/market?currency=EUR&amount=1'
+  const url = 'https://metal-premium-calculator.vercel.app/market?currency=EUR&amount=1'
   try {
     const response = await fetch(url)
     const content = await response.text()
