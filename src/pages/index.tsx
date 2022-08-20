@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Image from 'next/future/image'
 import { ChangeEvent, useState } from 'react'
 
 import Card from '@/components/Card'
@@ -6,6 +7,8 @@ import GroupInput from '@/components/GroupInput'
 import H1 from '@/components/H1'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
+import GoldLogo from '@/public/logos/gold.svg'
+import SilverLogo from '@/public/logos/silver.svg'
 
 const Home: NextPage = () => {
   const [market, setMarket] = useState(55.83)
@@ -26,7 +29,9 @@ const Home: NextPage = () => {
     <div className="p-4">
       <Card.Container className="max-w-md m-auto">
         <Card.Content>
-          <H1>Gold Calculator</H1>
+          <H1>
+            <Image src={GoldLogo} alt="Gold" className="h-16" unoptimized />
+          </H1>
 
           <div className="flex flex-col gap-4">
             <GroupInput className="flex gap-1 flex-wrap">

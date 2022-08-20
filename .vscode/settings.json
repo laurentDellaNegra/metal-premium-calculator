@@ -7,5 +7,5 @@
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true
   },
-  "svg.preview.background": "white"
+  "svg.preview.background": "transparent"
 }
