@@ -8,7 +8,7 @@ export default function Input(
   return (
     <input
       className={clsx(
-        'bg-inherit border-0 border-b-2 focus:ring-0 focus:border-b-input-value focus:text-input-value w-full',
+        'bg-inherit border-0 border-b-2 focus:ring-0 focus:border-b-gold focus:text-gold w-full',
         className
       )}
       {...rest}

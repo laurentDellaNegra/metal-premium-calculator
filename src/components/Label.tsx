@@ -5,5 +5,5 @@ export default function Label(
   props: DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>
 ) {
   const { className = '', ...rest } = props
-  return <label className={clsx('group-focus-within:text-input-value', className)} {...rest} />
+  return <label className={clsx('group-focus-within:text-gold', className)} {...rest} />
 }

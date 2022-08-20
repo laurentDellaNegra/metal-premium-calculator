@@ -1,26 +1,31 @@
 import type { NextPage } from 'next'
 import Image from 'next/future/image'
 import { ChangeEvent, useState } from 'react'
+import { QueryClient, dehydrate, useQuery } from 'react-query'
 
 import Card from '@/components/Card'
 import GroupInput from '@/components/GroupInput'
 import H1 from '@/components/H1'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
+import { getGoldMarket } from '@/lib/market'
 import GoldLogo from '@/public/logos/gold.svg'
 import SilverLogo from '@/public/logos/silver.svg'
 
 const Home: NextPage = () => {
-  const [market, setMarket] = useState(55.83)
+  const { data: marketData, isFetching } = useQuery('gold', getGoldMarket, {
+    // staleTime: 1 * 1000 * 60, // refresh every 1 minutes
+  })
+
   const [weight, setWeight] = useState(31.1)
   const [quality, setQuality] = useState(100)
   const [price, setPrice] = useState(0)
 
+  const market = marketData?.oneGram || 0
   const realWeight = (weight * quality) / 100
   const premium = ((price - realWeight * market) / (realWeight * market)) * 100
   const displayPremium = premium && premium > -100 ? `${premium.toFixed(2)}%` : ''
 
-  const handleMarket = (e: ChangeEvent<HTMLInputElement>) => setMarket(Number(e.target.value))
   const handleWeight = (e: ChangeEvent<HTMLInputElement>) => setWeight(Number(e.target.value))
   const handleQuality = (e: ChangeEvent<HTMLInputElement>) => setQuality(Number(e.target.value))
   const handlePrice = (e: ChangeEvent<HTMLInputElement>) => setPrice(Number(e.target.value))
@@ -30,7 +35,7 @@ const Home: NextPage = () => {
       <Card.Container className="max-w-md m-auto">
         <Card.Content>
           <H1>
-            <Image src={GoldLogo} alt="Gold" className="h-16" unoptimized />
+            <Image src={GoldLogo} alt="Gold" className="h-16 w-auto" priority unoptimized />
           </H1>
 
           <div className="flex flex-col gap-4">
@@ -41,17 +46,7 @@ const Home: NextPage = () => {
                 </Label>
               </div>
               <div className="flex flex-1 items-center justify-start">
-                <Input
-                  id="market"
-                  name="Market"
-                  type="number"
-                  placeholder="55.83"
-                  className="max-w-[112px]"
-                  value={market || ''}
-                  onChange={handleMarket}
-                  min={0}
-                />
-                <span className="group-focus-within:text-input-value">€</span>
+                {isFetching ? 'Refreshing...' : `${market}€` || '--'}
               </div>
             </GroupInput>
 
@@ -72,7 +67,7 @@ const Home: NextPage = () => {
                   onChange={handleWeight}
                   min={0}
                 />
-                <span className="group-focus-within:text-input-value">g</span>
+                <span className="group-focus-within:text-gold">g</span>
               </div>
             </GroupInput>
 
@@ -94,7 +89,7 @@ const Home: NextPage = () => {
                   min={0}
                   max={100}
                 />
-                <span className="group-focus-within:text-input-value">%</span>
+                <span className="group-focus-within:text-gold">%</span>
               </div>
             </GroupInput>
 
@@ -126,17 +121,29 @@ const Home: NextPage = () => {
                   onChange={handlePrice}
                   min={0}
                 />
-                <span className="group-focus-within:text-input-value">€</span>
+                <span className="group-focus-within:text-gold">€</span>
               </div>
             </GroupInput>
           </div>
         </Card.Content>
 
         {/* Card footer */}
-        <Card.Footer>Prime: {displayPremium}</Card.Footer>
+        <Card.Footer className="text-center text-xl">
+          Prime : <span className="text-gold">{displayPremium || '--'}</span>
+        </Card.Footer>
       </Card.Container>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery('gold', getGoldMarket)
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
 }
 
 export default Home

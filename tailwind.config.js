@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gold: '#F7D000',
         'page-background': '#1B2A32',
         'component-background': '#22343C',
         'active-background': '#324F61',

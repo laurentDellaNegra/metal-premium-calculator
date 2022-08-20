@@ -7,7 +7,7 @@ export default function H1(
   const { className = '', ...rest } = props
   return (
     <h1
-      className={clsx('flex items-center justify-center text-lg mb-3 text-input-value', className)}
+      className={clsx('flex items-center justify-center text-lg mb-5 text-input-value', className)}
       {...rest}
     />
   )
