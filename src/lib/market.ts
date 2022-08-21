@@ -1,5 +1,7 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL || ''
+
 export async function getGoldMarket() {
-  const url = 'https://metal-premium-calculator.vercel.app/market?currency=EUR&amount=1'
+  const url = `${API_URL}/market?currency=EUR&amount=1`
   try {
     const response = await fetch(url)
     const content = await response.text()
