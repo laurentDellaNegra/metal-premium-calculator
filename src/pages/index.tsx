@@ -14,7 +14,7 @@ import SilverLogo from '@/public/logos/silver.svg'
 
 const Home: NextPage = () => {
   const { data: marketData, isFetching } = useQuery('gold', getGoldMarket, {
-    // staleTime: 1 * 1000 * 60, // refresh every 1 minutes
+    refetchInterval: 1000 * 60, // refetch all minutes
   })
 
   const [weight, setWeight] = useState(31.1)
@@ -46,7 +46,8 @@ const Home: NextPage = () => {
                 </Label>
               </div>
               <div className="flex flex-1 items-center justify-start">
-                {isFetching ? 'Refreshing...' : `${market}€` || '--'}
+                {market ? `${market} €` : '--'}
+                {isFetching ? ' Refreshing...' : null}
               </div>
             </GroupInput>
 

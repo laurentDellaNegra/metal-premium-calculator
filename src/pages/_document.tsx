@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang="fr" className="h-screen bg-page-background text-text-and-icon">
+    <Html lang="fr" className="h-screen bg-pattern text-text-and-icon">
       <Head>
         {/* Font */}
         <link
