@@ -1,7 +1,10 @@
+import { QueryFunctionContext } from 'react-query'
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || ''
 
-export async function getGoldMarket() {
-  const url = `${API_URL}/market?currency=EUR&amount=1`
+export async function getGoldMarket({ queryKey }: QueryFunctionContext<[string, string]>) {
+  const [, currency] = queryKey
+  const url = `${API_URL}/market?currency=${currency}&amount=1`
   try {
     const response = await fetch(url)
     const content = await response.text()
