@@ -36,10 +36,6 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Gold Premium Calculator</title>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-        />
       </Head>
       <div className="p-4 md:p-9 lg:p-24 xl:p-32">
         <Card.Container className=" max-w-md m-auto">
