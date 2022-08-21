@@ -1,7 +1,7 @@
 {
   "name": "Gold Premium Calculator",
   "short_name": "Calculator",
-  "theme_color": "#ffffff",
+  "theme_color": "#004740",
   "background_color": "#004740",
   "display": "fullscreen",
   "orientation": "portrait",
