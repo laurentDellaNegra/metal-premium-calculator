@@ -9,6 +9,7 @@ import GroupInput from '@/components/GroupInput'
 import H1 from '@/components/H1'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
+import Loader from '@/components/Loader'
 import { getGoldMarket } from '@/lib/market'
 import GoldLogo from '@/public/logos/gold.svg'
 import SilverLogo from '@/public/logos/silver.svg'
@@ -50,7 +51,7 @@ const Home: NextPage = () => {
                 </div>
                 <div className="flex flex-1 items-center justify-start">
                   {market ? `${market} €` : '--'}
-                  {isFetching ? ' Refreshing...' : null}
+                  {isFetching ? <Loader className="ml-2 h-5 w-5 text-gold" /> : null}
                 </div>
               </GroupInput>
 
