@@ -47,7 +47,7 @@ const Home: NextPage = () => {
             <div className="flex flex-col gap-4">
               <GroupInput className="flex gap-1 flex-wrap">
                 <div className="flex flex-1 items-center justify-end">
-                  <Label className="mr-2">Gold market price :</Label>
+                  <Label className="mr-2">Market price :</Label>
                 </div>
                 <div className="flex flex-1 items-center justify-start">
                   {market ? `${market} €` : '--'}
