@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 interface Props {
   className?: string
 }
@@ -7,7 +9,7 @@ export default function Loader(props: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={clsx('animate-spin', className)}
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
