@@ -12,8 +12,8 @@ module.exports = withPWA({
   async rewrites() {
     return [
       {
-        source: '/market',
-        destination: 'https://www.prokerala.com/finance/gold-price.php',
+        source: '/market/:path*',
+        destination: 'https://www.bloomberg.com/quote/:path*',
       },
     ]
   },

@@ -22,12 +22,12 @@ const Home: NextPage = () => {
   const [weight, setWeight] = useState(31.1)
   const [quality, setQuality] = useState(100)
   const [price, setPrice] = useState(0)
+  const { symbol, queryParam } = currencies.get(currency)!
 
-  const { data: marketData, isFetching } = useQuery(['gold', currency], getGoldMarket, {
+  const { data: marketData, isFetching } = useQuery(['gold', queryParam], getGoldMarket, {
     refetchInterval: 1000 * 60, // refetch all minutes
   })
 
-  const symbol = currencies.get(currency)
   const market = marketData?.oneGram || 0
   const realWeight = (weight * quality) / 100
   const premium = ((price - realWeight * market) / (realWeight * market)) * 100
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
                   <Label className="mr-2">Market price :</Label>
                 </div>
                 <div className="flex flex-1 items-center justify-start">
-                  {market ? `${market} ${symbol}` : '--'}
+                  {market ? `${market.toFixed(4)} ${symbol}` : '--'}
                   {isFetching ? <Loader className="ml-2 h-5 w-5 text-gold" /> : null}
                 </div>
               </GroupInput>
