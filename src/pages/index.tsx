@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/future/image'
 import Head from 'next/head'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { QueryClient, dehydrate, useQuery } from 'react-query'
 
 import Card from '@/components/Card'
@@ -33,10 +33,20 @@ const Home: NextPage = () => {
   const premium = ((price - realWeight * market) / (realWeight * market)) * 100
   const displayPremium = quality && premium && premium > -100 ? `${premium.toFixed(2)}%` : ''
 
+  // TMP : next move to url state management
+  useEffect(() => {
+    const storageCurrency = window.localStorage.getItem('currency')
+    if (storageCurrency) setCurrency(storageCurrency)
+  }, [])
+
   const handleWeight = (e: ChangeEvent<HTMLInputElement>) => setWeight(Number(e.target.value))
   const handleQuality = (e: ChangeEvent<HTMLInputElement>) => setQuality(Number(e.target.value))
   const handlePrice = (e: ChangeEvent<HTMLInputElement>) => setPrice(Number(e.target.value))
-  const handleCurrency = (value: string) => setCurrency(value)
+  const handleCurrency = (value: string) => {
+    setCurrency(value)
+    //TMP
+    window.localStorage.setItem('currency', value)
+  }
 
   return (
     <>
