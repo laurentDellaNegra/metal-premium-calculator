@@ -8,7 +8,7 @@ const runtimeCaching = require('next-pwa/cache')
 module.exports = withPWA({
   swcMinify: true,
   //TODO: might break in the future
-  experimental: { images: { allowFutureImage: true } },
+  experimental: { images: { allowFutureImage: true }, nextScriptWorkers: true },
   async rewrites() {
     return [
       {
