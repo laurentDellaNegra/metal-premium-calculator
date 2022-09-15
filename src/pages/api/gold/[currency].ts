@@ -20,22 +20,24 @@ const TwoHourAgo = (currentTimeStamp: number) => {
 }
 
 // Very simple cache to limit API calls (limit: 500 calls per months max)
-let CONTENT_CACHED: any
+const CONTENT_CACHED = new Map()
 
 async function getGoldMarket(currency: string) {
   const url = `${API_URL}/api/XAU/${currency}`
+  let contentCached = CONTENT_CACHED.get(url)
   try {
-    if (!CONTENT_CACHED || TwoHourAgo(CONTENT_CACHED)) {
+    if (!contentCached || TwoHourAgo(contentCached?.timestamp)) {
       console.log('Data fetched')
       const response = await fetch(url, OPTIONS as any)
-      CONTENT_CACHED = await response.json()
+      const json = await response.json()
+      console.log(json)
+      CONTENT_CACHED.set(url, json)
+      contentCached = CONTENT_CACHED.get(url)
     } else {
       console.log('Data from cache')
     }
-    console.log(CONTENT_CACHED)
-
     return {
-      oneGram: CONTENT_CACHED.price_gram_24k,
+      oneGram: contentCached.price_gram_24k,
     }
   } catch (error) {
     console.error(error)
