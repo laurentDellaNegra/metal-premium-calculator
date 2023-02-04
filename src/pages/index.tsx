@@ -157,6 +157,21 @@ const Home: NextPage = () => {
           </Card.Footer>
         </Card.Container>
       </div>
+      <p className="text-center">
+        Made with ❤️ by{' '}
+        <a className="text-gold underline" href="https://github.com/laurentDellaNegra">
+          Me
+        </a>
+      </p>
+      <p className="text-center">
+        This app is{' '}
+        <a
+          className="text-gold underline"
+          href="https://github.com/laurentDellaNegra/metal-premium-calculator"
+        >
+          open source
+        </a>
+      </p>
     </>
   )
 }
