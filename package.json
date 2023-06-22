@@ -13,6 +13,7 @@
     "@builder.io/partytown": "^0.6.4",
     "@headlessui/react": "^1.6.4",
     "@heroicons/react": "^1.0.6",
+    "cheerio": "^1.0.0-rc.12",
     "clsx": "^1.1.1",
     "next": "^12.2.5",
     "next-pwa": "marcofranssen/next-pwa#fix-pwa-config",
