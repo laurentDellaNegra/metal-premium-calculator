@@ -69,11 +69,39 @@ async function getGoldMarket(currency: string) {
       const response = await fetch(url, OPTIONS as any)
       const text = await response.text()
       const $ = load(text)
-      const EUR = Number($('span[data-price="GXAUUSD_EUR"]').first().text().trim())
-      const USD = Number($('span[data-price="GXAUUSD"]').first().text().trim())
-      const CHF = Number($('span[data-price="GXAUUSD_CHF"]').first().text().trim())
+      const EUR = Number($('td span[data-price="GXAUUSD_EUR"]').text().trim().replace(',', ''))
+      const USD = Number($('td span[data-price="GXAUUSD"]').text().trim().replace(',', ''))
+      const CHF = Number($('td span[data-price="GXAUUSD_CHF"]').text().trim().replace(',', ''))
+      const AED = Number($('td span[data-price="GXAUUSD_AED"]').text().trim().replace(',', ''))
+      const SAR = Number($('td span[data-price="GXAUUSD_SAR"]').text().trim().replace(',', ''))
+      const SGD = Number($('td span[data-price="GXAUUSD_SGD"]').text().trim().replace(',', ''))
+      const CAD = Number($('td span[data-price="GXAUUSD_CAD"]').text().trim().replace(',', ''))
+      const AUD = Number($('td span[data-price="GXAUUSD_AUD"]').text().trim().replace(',', ''))
+      const QAR = Number($('td span[data-price="GXAUUSD_QAR"]').text().trim().replace(',', ''))
+      const GBP = Number($('td span[data-price="GXAUUSD_GBP"]').text().trim().replace(',', ''))
+      const KWD = Number($('td span[data-price="GXAUUSD_KWD"]').text().trim().replace(',', ''))
+      const PKR = Number($('td span[data-price="GXAUUSD_PKR"]').text().trim().replace(',', ''))
+      const INR = Number($('td span[data-price="GXAUUSD_INR"]').text().trim().replace(',', ''))
+      const MYR = Number($('td span[data-price="GXAUUSD_MYR"]').text().trim().replace(',', ''))
+      const PHP = Number($('td span[data-price="GXAUUSD_PHP"]').text().trim().replace(',', ''))
 
-      CONTENT_CACHED.set(url, { EUR, USD, CHF })
+      CONTENT_CACHED.set(url, {
+        EUR,
+        USD,
+        CHF,
+        AED,
+        SAR,
+        SGD,
+        CAD,
+        AUD,
+        QAR,
+        GBP,
+        KWD,
+        PKR,
+        INR,
+        MYR,
+        PHP,
+      })
       contentCached = CONTENT_CACHED.get(url)
     } else {
       // console.log('Data from cache')
