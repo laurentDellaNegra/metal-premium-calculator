@@ -16,6 +16,7 @@ export const currencies = new Map([
   ['PHP', { symbol: '₱', queryParam: 'PHP' }],
 ])
 
+// Euro
 // United States Dollar
 // United Arab Emirates Dirham
 // Saudi Riyal
